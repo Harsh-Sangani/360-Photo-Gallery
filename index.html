@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://rawgit.com/ngokevin/aframe-audio/master/dist/aframe-audio-component.min.js"></script>
+
+  <title>A-Frame Menu</title>
+  
+</head>
+<body>
+  
+  <!-- Scene -->
+  <a-scene>
+    <p style="margin: 10px;font-family: 'Times New Roman', Times, serif; position: absolute; z-index: 1">Use W, A, S, D to move around</p>
+    <a-sky src="Architectural Boat Ride/IMG_80.jpg"></a-sky>
+    <!-- Menu Options -->
+    <a-entity position="-2.5 1.5 -5" id="aquariumOption" class="clickable">
+      <a-box width="2" height="1" depth="-0.5" color="#555">
+        <a-entity position="0 0 0.05">
+          <a-text value="Aquarium" color="#fff" align="center" scale="1.5 1.5 1.5"></a-text>
+        </a-entity>
+      </a-box>
+    </a-entity>
+
+    <a-entity position="0.5 1.5 -5" id = "cityOption" class = "clickable">
+      <a-box width="2" height="1" depth="-0.5" color="#555">
+        <a-entity position="0 0 0.05">
+          <a-text value="City" color="#fff" align="center" scale="1.5 1.5 1.5"></a-text>
+        </a-entity>
+      </a-box>
+    </a-entity>
+
+    <a-entity position="3.5 1.5 -5" id = "navypierOption" class = "clickable">
+      <a-box width="2" height="1" depth="-0.5" color="#555">
+        <a-entity position="0 0 0.05">
+          <a-text value="Navy Pier" color="#fff" align="center" scale="1.5 1.5 1.5"></a-text>
+        </a-entity>
+      </a-box>
+    </a-entity>
+
+    <a-entity position="6.5 1.5 -5" class = "clickable">
+      <a-box width="2" height="1" depth="-0.5" color="#555">
+        <a-entity position="0 0 0.05">
+          <a-text value="Museum" color="#fff" align="center" scale="1.5 1.5 1.5"></a-text>
+        </a-entity>
+      </a-box>
+    </a-entity>
+
+    <a-entity position="0.5 0 -5" id = "abrOption" class = "clickable">
+      <a-box width="2" height="1" depth="-0.5" color="#555">
+        <a-entity position="0 0 0.05">
+          <a-text value="Architectural\n Boat Ride" color="#fff" align="center" scale="1.5 1.5 1.5"></a-text>
+        </a-entity>
+      </a-box>
+    </a-entity>
+
+    <a-entity position="3.5 0 -5" class = "clickable">
+      <a-box width="2" height="1" depth="-0.5" color="#555">
+        <a-entity position="0 0 0.05">
+          <a-text value="Skydeck" color="#fff" align="center" scale="1.5 1.5 1.5"></a-text>
+        </a-entity>
+      </a-box>
+    </a-entity>
+
+    <a-entity position="2.0 -1.5 -5" class = "clickable">
+      <a-box width="2" height="1" depth="-0.5" color="#555">
+        <a-entity position="0 0 0.05">
+          <a-text value="Food" color="#fff" align="center" scale="1.5 1.5 1.5"></a-text>
+        </a-entity>
+      </a-box>
+    </a-entity>
+    
+    <a-entity position="2 3 -5">
+      <a-text value="My Chicago Trip" depth ="-0.5" color="#fff" align="center" scale="2 2 2" rotation="0 0 0" animation="property: scale; to: 3.5 3.5 3.5; dir: alternate; loop: true; dur: 4000"></a-text>
+    </a-entity>
+    
+
+    <script>
+      // Get all elements with the 'clickable' class
+      var clickableElements = document.querySelectorAll('.clickable');
+    
+      // Add a click event listener to each clickable element
+      clickableElements.forEach(function(element) {
+        var originalScale = element.object3D.scale.clone();
+        var hoverSound = new Audio('sounds/hover.mp3'); // Replace 'path/to/hover-sound.mp3' with the actual path to your sound file
+    
+        element.addEventListener('mouseenter', function() {
+          // Increase the scale on hover
+          element.object3D.scale.set(originalScale.x * 1.2, originalScale.y * 1.2, originalScale.z * 1.2);
+          
+          // Play the hover sound
+          hoverSound.play();
+        });
+    
+        element.addEventListener('mouseleave', function() {
+          // Restore the original scale on mouse leave
+          element.object3D.scale.copy(originalScale);
+        });
+    
+        element.addEventListener('click', function() {
+          // Get the value of the 'value' attribute (change this based on your needs)
+          var optionValue = element.querySelector('a-text').getAttribute('value');
+          var abrOptionElement = document.getElementById('abrOption');
+    
+          // Use the option value to determine which HTML file to open
+          if (optionValue === 'Aquarium') {
+            window.location.href = 'aquarium.html';
+          } else if (optionValue === 'Navy Pier') {
+            window.location.href = 'navypier.html';
+          } else if (optionValue === 'City') {
+            window.location.href = 'city.html';
+          } else if (optionValue === 'Museum') {
+            window.location.href = 'museum.html';
+          } else if (optionValue === 'Skydeck') {
+            window.location.href = 'skydeck.html';
+          } else if (optionValue === 'Food') {
+            window.location.href = 'food.html';
+          } else if (abrOptionElement) {
+            abrOptionElement.addEventListener('click', function() {
+              // Replace this line with the actual HTML file you want to open
+              window.location.href = 'abr.html';
+            });
+          } 
+          // Add more conditions for other options as needed
+        });
+      });
+    </script>
+
+    <!-- Add more menu options as needed -->
+
+    <!-- Camera at the center -->
+    <a-entity camera look-controls wasd-controls position="0 1.6 0" cursor="rayOrigin: mouse;"></a-entity>
+
+
+  </a-scene>
+
+</body>
+
+</html>

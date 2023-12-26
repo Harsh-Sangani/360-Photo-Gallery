@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <title>Image Slideshow in Sky</title>
+</head>
+<body>
+
+  <!-- Scene -->
+  <a-scene>
+
+    <!-- Full-screen Image (initial image) -->
+    <a-sky id="imageSlideshow" src="path/to/your/initial-image.jpg"></a-sky>
+
+    <!-- Camera at the center -->
+    <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
+
+    <!-- Script for Image Slideshow -->
+    <script>
+      // Array of image sources for the slideshow
+      const imageSources = [
+        'path/to/your/image1.jpg',
+        'path/to/your/image2.jpg',
+        'path/to/your/image3.jpg',
+        // Add more image paths as needed
+      ];
+
+      // Set the initial image index
+      let currentImageIndex = 0;
+
+      // Function to update the sky with the next image in the slideshow
+      function updateSky() {
+        const sky = document.getElementById('imageSlideshow');
+        sky.setAttribute('src', imageSources[currentImageIndex]);
+
+        // Increment the image index or reset to 0 if reached the end
+        currentImageIndex = (currentImageIndex + 1) % imageSources.length;
+      }
+
+      // Set the interval for updating the sky (every 5 seconds in this example)
+      setInterval(updateSky, 5000);
+    </script>
+
+  </a-scene>
+
+</body>
+</html>

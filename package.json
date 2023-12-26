@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "aframe-text-geometry-component": "^0.5.2"
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <title>A-Frame Dynamic Disco Ball</title>
+</head>
+<body>
+  <p style="margin: 10px;font-family: 'Times New Roman', Times, serif; position: absolute; z-index: 1">Press "B" to go back to Menu</p>
+  <a-scene>
+    <!-- Background Image -->
+    <a-sky src="Food/IMG_background.jpg" width = "500" material="opacity: 0.8"></a-sky>
+
+    <!-- Disco Ball Sphere -->
+    <!-- <a-sphere radius="5" color="#ffffff" opacity="0.1"></a-sphere> -->
+
+    <!-- Dynamic Disco Ball Images -->
+    <a-entity id="discoBall" rotation="0 0 0" position="0 5 0"></a-entity>
+
+    <!-- Camera at the center -->
+     <a-entity camera look-controls wasd-controls position="0 5 0" cursor="rayOrigin: mouse;"></a-entity>
+
+    <!-- Light -->
+    <a-light type="point" position="0 5 0" intensity="0.5"></a-light>
+
+    <script>
+
+      // Add a keydown event listener to the document
+      document.addEventListener('keydown', function(event) {
+        // Check if the pressed key is 'M'
+        if (event.key === 'B' || event.key === 'b') {
+          // Navigate to the 'index.html' page
+          window.location.href = 'index.html';
+        }
+      });
+
+      // Number of images in the disco ball
+      const numImages = 14;
+
+      // Calculate the angle between each image
+      const angleIncrement = 360 / numImages;
+      
+      // Create and append images to the disco ball entity
+      const discoBall = document.getElementById('discoBall');
+      const images = []; // Array to store image elements
+
+      for (let i = 0; i < numImages; i++) {
+        const angle = i * angleIncrement;
+        const positionX = 5 * Math.cos((angle * Math.PI) / 180);
+        const positionZ = 5 * Math.sin((angle * Math.PI) / 180);
+
+        const image = document.createElement('a-image');
+        image.setAttribute('src', `Food/IMG_${i + 1}.jpg`);
+        image.setAttribute('rotation', `0 ${angle} 0`);
+        image.setAttribute('position', `${positionX} 0 ${positionZ}`);
+        image.setAttribute('scale', '3 3 3');
+
+        // Store image elements in the array
+        images.push(image);
+
+        
+
+         // Add event listeners for hover effects
+         image.addEventListener('mouseenter', () => {
+         image.setAttribute('scale', '7 7 7'); // Increase size on hover
+
+        // Set the rotation to make the image face the camera
+          const cameraPosition = document.querySelector('[camera]').getAttribute('position');
+          const imagePosition = image.getAttribute('position');
+          const angle = Math.atan2(cameraPosition.x - imagePosition.x, cameraPosition.z - imagePosition.z);
+          const degrees = (angle * 180) / Math.PI;
+
+          image.setAttribute('rotation', `0 ${degrees} 0`);
+
+          for (const otherImage of images) {
+            if (otherImage !== image) {
+              otherImage.setAttribute('visible', 'false');
+            }
+          }
+        });
+        image.addEventListener('mouseleave', () => {
+        image.setAttribute('scale', '3 3 3'); // Restore size on mouse leave
+        image.setAttribute('rotation', `0 ${angle} 0`); // Restore rotation on mouse leave
+        // Make all images visible again
+        for (const otherImage of images) {
+            otherImage.setAttribute('visible', 'true');
+          }
+        });
+
+
+        discoBall.appendChild(image);
+      }
+    </script>
+  </a-scene>
+</body>
+</html>
