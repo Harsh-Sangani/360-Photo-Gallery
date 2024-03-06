@@ -1,0 +1,74 @@
+.pop-up {
+    background-color: rgba(97, 95, 95, 0.9); /* Semi-transparent white background */
+    width: 50vw;
+    height: fit-content;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Drop shadow effect */
+    z-index: 2; /* Ensure it's above other elements */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+.pop-up h1{
+    text-align: center;
+    font-size: x-large;
+}
+
+  .controls-content {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 20px 0;
+  }
+
+  .controls-content p{
+    font-size: large;
+    font-weight: 600;
+  }
+  
+  .controls-content .img-1 {
+    max-width: 80px; /* Adjust as needed */
+    max-height: 80px; /* Adjust as needed */
+    margin-right: 30px; /* Adjust spacing between image and text */
+  }
+
+  .controls-content .img-2 {
+    max-width: 50px; /* Adjust as needed */
+    max-height: 50px; /* Adjust as needed */
+    margin-right: 30px; /* Adjust spacing between image and text */
+    margin-left: 20px;
+  }
+
+  .controls-content .img-3 {
+    max-width: 40px; /* Adjust as needed */
+    max-height: 40px; /* Adjust as needed */
+    margin-right: 30px; /* Adjust spacing between image and text */
+    margin-left: 20px;
+  }
+
+  .pop-up .btn-container{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .pop-up .btn{
+    cursor: pointer;
+    background-color: #555;
+    border: 0px;
+    box-shadow: 50px;
+    border-radius: 6px;
+    font-size: x-large;
+    font-weight: 700;
+    color: white;
+    padding: 10px 30px 10px 30px;
+    margin-right: 20px;
+    
+  }
+
+  .pop-up .btn:hover {
+    scale: 1.2;
+  }
+  

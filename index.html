@@ -5,15 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="https://rawgit.com/ngokevin/aframe-audio/master/dist/aframe-audio-component.min.js"></script>
+  <script src = "scripts/indexScript.js"></script>
+  <link rel="stylesheet" href="styles/indexstyle.css">
 
   <title>A-Frame Menu</title>
   
 </head>
 <body>
   
+
+  <div id="popup" class="pop-up">
+    <h1>Welcome To My Immersive Photo Gallery!!</h1>
+    <h2>Controls:</h2>
+    <div class="controls-content">
+      <img class="img-1" src="Icons/WASD.png" alt="">
+      <p>To move Left, Right, Front and Back in the Scene</p>
+    </div>
+
+    <div class="controls-content">
+      <img class="img-2" src="Icons/LeftMouseClick.png" alt="">
+      <p>Hold Left Click and Move to Rotate the Camera</p>
+    </div>
+
+    <div class="controls-content">
+      <img class="img-3" src="Icons/B.png" alt="">
+      <p>Press to go back to Menu</p>
+    </div>
+    <div class="btn-container">
+      <button id="closeButton" type="button" class="btn">Dive In!</button>
+    </div>
+    
+
+  </div>
+
+  
   <!-- Scene -->
   <a-scene>
-    <p style="margin: 10px;font-family: 'Times New Roman', Times, serif; position: absolute; z-index: 1">Use W, A, S, D to move around</p>
+    
     <a-sky src="Architectural Boat Ride/IMG_80.jpg"></a-sky>
     <!-- Menu Options -->
     <a-entity position="-2.5 1.5 -5" id="aquariumOption" class="clickable">
@@ -77,7 +105,7 @@
     </a-entity>
     
 
-    <script>
+    <!-- <script>
       // Get all elements with the 'clickable' class
       var clickableElements = document.querySelectorAll('.clickable');
     
@@ -126,7 +154,7 @@
           // Add more conditions for other options as needed
         });
       });
-    </script>
+    </script> -->
 
     <!-- Add more menu options as needed -->
 
